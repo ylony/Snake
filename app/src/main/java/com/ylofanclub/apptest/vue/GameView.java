@@ -5,10 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.support.v4.view.GestureDetectorCompat;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import com.ylofanclub.apptest.modele.Drawer;
 import com.ylofanclub.apptest.modele.GameEngine;
@@ -23,19 +25,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
     private boolean running = true;
     public GameEngine engine;
     private GestureDetectorCompat mDetector;
-
+    private GameLoop loop;
     public GameView(Context context){
         super(context);
         getHolder().addCallback(this);
         holder = this.getHolder();
         this.engine = new GameEngine(this);
         mDetector = new GestureDetectorCompat(getContext(), this);
+        loop  = new GameLoop(this);
     }
 
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        GameLoop loop = new GameLoop(this);
         loop.setRunning(true);
         loop.start();
     }
@@ -83,7 +85,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
 
     @Override
     public void onLongPress(MotionEvent e) {
-
+        engine = new GameEngine(this);
+        loop.setRunning(true);
+        loop.start();
+        Log.i("MONSNAKE", "longpress");
     }
 
     @Override
@@ -124,5 +129,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
         } else {
             return true;
         }
+    }
+
+    public void stop() {
+        loop.setRunning(false);
+        loop.interrupt();
+    }
+
+    public void showEndGame() {
+        Toast.makeText(getContext(), engine.getPlayer().getNbPts() + " pts , vous avez perdu !", Toast.LENGTH_SHORT).show();
     }
 }

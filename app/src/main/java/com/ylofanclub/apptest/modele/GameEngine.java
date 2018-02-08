@@ -1,10 +1,14 @@
 package com.ylofanclub.apptest.modele;
 
+import android.content.Context;
 import android.graphics.Point;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ylofanclub.apptest.metier.Candy;
 import com.ylofanclub.apptest.metier.Element;
+import com.ylofanclub.apptest.metier.Player;
+import com.ylofanclub.apptest.metier.Snake;
 import com.ylofanclub.apptest.metier.Square;
 import com.ylofanclub.apptest.vue.GameView;
 
@@ -28,12 +32,14 @@ public class GameEngine {
 
     public static Direction move;
     private Point CurrentPos = new Point();
+    private Player player = new Player("Ylony");
+
 
     public GameEngine(GameView game) {
         this.game = game;
         CurrentPos.x = ((Drawer.size.x / 2) / Drawer.blockSize) * Drawer.blockSize;
         CurrentPos.y = ((Drawer.size.y / 2) / Drawer.blockSize) * Drawer.blockSize;
-        snake = new Square(CurrentPos);
+        snake = new Snake(CurrentPos);
         Point rand = new Point();
         candy = new Candy(rand);
         generateNewCandyPos();
@@ -46,10 +52,14 @@ public class GameEngine {
         candy.updatePos(new Point(x, y));
     }
     public void updateGame(){
-        if(!checkPos()){ Log.i("SNAKEGAME", "perdu");}
+        if(!checkPos()){ // Check si le joueur a perdu
+            game.stop();
+            Log.i("MONSNAKE", "perdu");
+        }
         if(CurrentPos.x == candy.getPosition().x && CurrentPos.y == candy.getPosition().y){
             generateNewCandyPos();
-            snake.eat();
+            snake.eat(CurrentPos);
+            player.addPts();
         }
         if(move == Direction.DOWN)
         {
@@ -70,9 +80,25 @@ public class GameEngine {
         this.snake.updatePos(CurrentPos);
     }
 
+    public boolean checkEatSelf(){
+        int trail = snake.getCore().size() - 1;
+        while(trail > 0)
+        {
+           if(CurrentPos.x == snake.getCore().get(trail - 1).getPosition().x && CurrentPos.y == snake.getCore().get(trail - 1).getPosition().y)
+           {
+               return true;
+           }
+           trail--;
+        }
+        return false;
+    }
+
     public boolean checkPos(){
 
         if(CurrentPos.x >= Drawer.size.x || CurrentPos.y >= Drawer.size.y || CurrentPos.x <= 0 || CurrentPos.y <= 0 ){
+            return false;
+        }
+        if(checkEatSelf()){
             return false;
         }
         return true;
@@ -84,5 +110,9 @@ public class GameEngine {
 
     public Element getCandy() {
         return candy;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.ylofanclub.apptest.modele.Drawer;
 
+import java.util.List;
+
 /**
  * Created by hylow on 02/02/2018.
  */
@@ -16,12 +18,16 @@ public class Square implements Element {
     private Point position;
 
     public Square(Point point) {
-        this.position = point;
+        Point position = new Point();
+        position.set(point.x, point.y);
+        this.position = position;
     }
 
     @Override
     public void updatePos(Point position) {
-        this.position = position;
+        Point position2 = new Point();
+        position2.set(position.x, position.y);
+        this.position = position2;
     }
 
     @Override
@@ -34,7 +40,12 @@ public class Square implements Element {
         Drawer.drawElement(c, this, Color.RED);
     }
 
-    public void eat(){
+    public void eat(Point position){
         Log.i("SNAKEGAME", "Il a mangé");
+    }
+
+    @Override
+    public List<Square> getCore() {
+        return null;
     }
 }

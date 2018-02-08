@@ -1,6 +1,7 @@
 package com.ylofanclub.apptest.modele;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import com.ylofanclub.apptest.vue.GameView;
 
@@ -43,7 +44,9 @@ public class GameLoop extends Thread {
             try {
                 if (sleepTime >= 0) {sleep(sleepTime);}
             }
-            catch (Exception e) {}
+            catch (Exception e) {
+
+            }
         }
     }
 }

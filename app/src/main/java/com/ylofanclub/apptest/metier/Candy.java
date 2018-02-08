@@ -6,6 +6,7 @@ import android.graphics.Point;
 
 import com.ylofanclub.apptest.modele.Drawer;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -36,7 +37,14 @@ public class Candy implements Element{
     }
 
     @Override
-    public void eat() {
-        //Candy can't eat
+    public void eat(Point position) {
+
     }
+
+    @Override
+    public List<Square> getCore() {
+        return null;
+    }
+
+
 }

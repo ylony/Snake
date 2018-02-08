@@ -22,12 +22,14 @@ public class Drawer {
         Paint paint = new Paint();
         paint.setTextSize((float)(blockSize * 1.3));
         paint.setColor(Color.WHITE);
+        paint.setAntiAlias(true);
         canvas.drawText("Snake Game", (float)(size.x / 3.1), (float)(blockSize * 1.2), paint);
     }
 
     public static void drawElement(Canvas c, Element s, int color){
         Paint redPaint = new Paint();
         redPaint.setColor(color);
+        redPaint.setAntiAlias(true);
         c.drawCircle(s.getPosition().x,s.getPosition().y, Drawer.blockSize / 2, redPaint);
     }
 }
