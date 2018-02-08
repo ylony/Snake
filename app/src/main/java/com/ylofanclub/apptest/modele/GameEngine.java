@@ -32,7 +32,7 @@ public class GameEngine {
 
     public static Direction move;
     private Point CurrentPos = new Point();
-    private Player player = new Player("Ylony");
+    public static Player player;
 
 
     public GameEngine(GameView game) {
@@ -44,6 +44,7 @@ public class GameEngine {
         candy = new Candy(rand);
         generateNewCandyPos();
         move = Direction.RIGHT;
+        player =  new Player("Ylony");
     }
     public void generateNewCandyPos(){
         Random rand = new Random();
@@ -110,9 +111,5 @@ public class GameEngine {
 
     public Element getCandy() {
         return candy;
-    }
-
-    public Player getPlayer() {
-        return player;
     }
 }

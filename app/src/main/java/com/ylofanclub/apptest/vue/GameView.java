@@ -135,8 +135,4 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
         loop.setRunning(false);
         loop.interrupt();
     }
-
-    public void showEndGame() {
-        Toast.makeText(getContext(), engine.getPlayer().getNbPts() + " pts , vous avez perdu !", Toast.LENGTH_SHORT).show();
-    }
 }

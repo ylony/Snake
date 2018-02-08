@@ -24,6 +24,9 @@ public class Drawer {
         paint.setColor(Color.WHITE);
         paint.setAntiAlias(true);
         canvas.drawText("Snake Game", (float)(size.x / 3.1), (float)(blockSize * 1.2), paint);
+        if(GameEngine.player != null) {
+            canvas.drawText(GameEngine.player.getNbPts().toString(), (float) (size.x / 2.1), (float) (size.y / 2), paint);
+        }
     }
 
     public static void drawElement(Canvas c, Element s, int color){
