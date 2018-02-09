@@ -3,14 +3,12 @@ package com.ylofanclub.apptest.vue;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.support.v4.view.GestureDetectorCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 import com.ylofanclub.apptest.modele.Drawer;
 import com.ylofanclub.apptest.modele.GameEngine;

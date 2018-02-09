@@ -1,7 +1,6 @@
 package com.ylofanclub.apptest.modele;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import com.ylofanclub.apptest.vue.GameView;
 

@@ -1,9 +1,7 @@
 package com.ylofanclub.apptest.modele;
 
-import android.content.Context;
 import android.graphics.Point;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.ylofanclub.apptest.metier.Candy;
 import com.ylofanclub.apptest.metier.Element;

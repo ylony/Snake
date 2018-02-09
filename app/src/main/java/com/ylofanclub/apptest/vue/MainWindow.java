@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 
 import com.ylofanclub.apptest.modele.Drawer;
-import com.ylofanclub.apptest.modele.GameEngine;
 
 /**
  * Created by hylow on 24/01/2018.

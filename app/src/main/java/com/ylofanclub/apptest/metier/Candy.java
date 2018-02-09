@@ -7,7 +7,6 @@ import android.graphics.Point;
 import com.ylofanclub.apptest.modele.Drawer;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by hylow on 26/01/2018.

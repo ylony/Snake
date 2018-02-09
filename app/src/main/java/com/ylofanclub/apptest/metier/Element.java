@@ -1,10 +1,8 @@
 package com.ylofanclub.apptest.metier;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Point;
 
-import com.ylofanclub.apptest.modele.Drawer;
 
 import java.util.List;
 
