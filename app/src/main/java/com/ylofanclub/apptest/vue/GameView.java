@@ -61,6 +61,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
         engine.getSnake().drawSelf(c);
         engine.getCandy().drawSelf(c);
         Drawer.drawInterface(c);
+        Drawer.drawLimit(c);
     }
 
     @Override

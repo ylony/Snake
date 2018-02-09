@@ -48,9 +48,14 @@ public class GameEngine {
     }
     public void generateNewCandyPos(){
         Random rand = new Random();
-        Integer x = ((Math.abs(rand.nextInt()) % Drawer.size.x) / Drawer.blockSize) * Drawer.blockSize;
-        Integer y = ((Math.abs(rand.nextInt()) % Drawer.size.y) / Drawer.blockSize) * Drawer.blockSize;
+        Integer x = ((rand.nextInt(Drawer.size.x - Drawer.blockSize) + Drawer.blockSize) / Drawer.blockSize) * Drawer.blockSize;
+        Integer y = ((rand.nextInt(Drawer.size.y - Drawer.blockSize ) + Drawer.blockSize) / Drawer.blockSize) * Drawer.blockSize;
         candy.updatePos(new Point(x, y));
+        for(Square sq : this.getSnake().getCore()){
+            if(sq.getPosition().x == x && sq.getPosition().y == y){
+                generateNewCandyPos();
+            }
+        }
     }
     public void updateGame(){
         if(!checkPos()){ // Check si le joueur a perdu
