@@ -30,7 +30,7 @@ public class GameEngine {
 
     public static Direction move;
     private Point CurrentPos = new Point();
-    public static Player player;
+    static Player player;
 
 
     public GameEngine(GameView game) {
@@ -44,7 +44,7 @@ public class GameEngine {
         move = Direction.RIGHT;
         player =  new Player("Ylony");
     }
-    public void generateNewCandyPos(){
+    private void generateNewCandyPos(){
         Random rand = new Random();
         Integer x = ((rand.nextInt(Drawer.size.x - Drawer.blockSize) + Drawer.blockSize) / Drawer.blockSize) * Drawer.blockSize;
         Integer y = ((rand.nextInt(Drawer.size.y - Drawer.blockSize ) + Drawer.blockSize) / Drawer.blockSize) * Drawer.blockSize;
@@ -84,7 +84,7 @@ public class GameEngine {
         this.snake.updatePos(CurrentPos);
     }
 
-    public boolean checkEatSelf(){
+    private boolean checkEatSelf(){
         int trail = snake.getCore().size() - 1;
         while(trail > 0)
         {
@@ -97,15 +97,8 @@ public class GameEngine {
         return false;
     }
 
-    public boolean checkPos(){
-
-        if(CurrentPos.x >= Drawer.size.x || CurrentPos.y >= Drawer.size.y || CurrentPos.x <= 0 || CurrentPos.y <= 0 ){
-            return false;
-        }
-        if(checkEatSelf()){
-            return false;
-        }
-        return true;
+    private boolean checkPos() {
+        return !(CurrentPos.x >= Drawer.size.x || CurrentPos.y >= Drawer.size.y || CurrentPos.x <= 0 || CurrentPos.y <= 0) && !checkEatSelf();
     }
 
     public Element getSnake() {
