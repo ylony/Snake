@@ -20,6 +20,7 @@ public class GameEngine {
     private GameView game;
     private Element snake;
     private Element candy;
+    private Integer test = 0;
     public enum Direction
     {
         UP,
@@ -29,6 +30,7 @@ public class GameEngine {
     }
 
     public static Direction move;
+    public static Direction moveFinal;
     private Point CurrentPos = new Point();
     static Player player;
 
@@ -42,6 +44,7 @@ public class GameEngine {
         candy = new Candy(rand);
         generateNewCandyPos();
         move = Direction.RIGHT;
+        moveFinal = Direction.RIGHT;
         player =  new Player("Ylony");
     }
     private void generateNewCandyPos(){
@@ -56,30 +59,33 @@ public class GameEngine {
         }
     }
     public void updateGame(){
-        if(!checkPos()){ // Check si le joueur a perdu
-            game.stop();
-            Log.i("MONSNAKE", "perdu");
+        this.test++;
+        switch (moveFinal){
+            case DOWN:
+                CurrentPos.y += Drawer.blockSize / (GameLoop.fps / 10);
+                break;
+            case UP:
+                CurrentPos.y -= Drawer.blockSize / (GameLoop.fps / 10);
+                break;
+            case RIGHT:
+                CurrentPos.x += Drawer.blockSize / (GameLoop.fps / 10);
+                break;
+            case LEFT:
+                CurrentPos.x -= Drawer.blockSize / (GameLoop.fps / 10);
+                break;
         }
-        if(CurrentPos.x == candy.getPosition().x && CurrentPos.y == candy.getPosition().y){
-            generateNewCandyPos();
-            snake.eat(CurrentPos);
-            player.addPts();
-        }
-        if(move == Direction.DOWN)
-        {
-            CurrentPos.y += Drawer.blockSize;
-        }
-        if (move == Direction.UP)
-        {
-            CurrentPos.y -= Drawer.blockSize;
-        }
-        if (move == Direction.RIGHT)
-        {
-            CurrentPos.x += Drawer.blockSize;
-        }
-        if (move == Direction.LEFT)
-        {
-            CurrentPos.x -= Drawer.blockSize;
+        if(this.test > 5) {
+            moveFinal = move;
+            if(!checkPos()){ // Check si le joueur a perdu
+                game.stop();
+                Log.i("MONSNAKE", "perdu");
+            }
+            if(CurrentPos.x == candy.getPosition().x && CurrentPos.y == candy.getPosition().y){
+                generateNewCandyPos();
+                snake.eat(CurrentPos);
+                player.addPts();
+            }
+            this.test = 0;
         }
         this.snake.updatePos(CurrentPos);
     }

@@ -99,28 +99,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback,Gest
 
     @Override
     public boolean onFling(MotionEvent motionEvent1, MotionEvent motionEvent2, float X, float Y) {
-        if (motionEvent1.getY() - motionEvent2.getY() > 85) {
+        if (motionEvent1.getY() - motionEvent2.getY() > 80) {
             if(GameEngine.move != GameEngine.Direction.DOWN) {
                 GameEngine.move = GameEngine.Direction.UP;
             }
             return true;
         }
 
-        if (motionEvent2.getY() - motionEvent1.getY() > 85) {
+        if (motionEvent2.getY() - motionEvent1.getY() >= 80) {
             if(GameEngine.move != GameEngine.Direction.UP) {
                 GameEngine.move = GameEngine.Direction.DOWN;
             }
             return true;
         }
 
-        if (motionEvent1.getX() - motionEvent2.getX() > 85) {
+        if (motionEvent1.getX() - motionEvent2.getX() >= 80) {
             if(GameEngine.move != GameEngine.Direction.RIGHT) {
                 GameEngine.move = GameEngine.Direction.LEFT;
             }
             return true;
         }
 
-        if (motionEvent2.getX() - motionEvent1.getX() > 85) {
+        if (motionEvent2.getX() - motionEvent1.getX() >= 80) {
             if(GameEngine.move != GameEngine.Direction.LEFT) {
                 GameEngine.move = GameEngine.Direction.RIGHT;
             }

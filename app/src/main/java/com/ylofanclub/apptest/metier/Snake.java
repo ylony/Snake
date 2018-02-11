@@ -3,6 +3,9 @@ package com.ylofanclub.apptest.metier;
 import android.graphics.Canvas;
 import android.graphics.Point;
 
+import com.ylofanclub.apptest.modele.Drawer;
+import com.ylofanclub.apptest.modele.GameEngine;
+
 import java.util.ArrayList;
 import java.util.List;
 
